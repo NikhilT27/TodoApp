@@ -45,7 +45,6 @@ export default function App() {
     if (text !== "") {
       let id =
         text.split(" ").join("") + Math.floor(Math.random() * 10000).toString();
-
       setTasks([...tasks, { id: id, task: text }]);
       setText("");
     }
@@ -71,12 +70,6 @@ export default function App() {
           <Pressable style={styles.addButton} onPress={onAddButton}>
             <Text style={styles.addButtonText}>+</Text>
           </Pressable>
-          {/* <Button
-          onPress={onAddButton}
-          title="+"
-          color="red"
-          accessibilityLabel="Add Task"
-        /> */}
         </View>
       </View>
       <View style={styles.storedTaskbox}>

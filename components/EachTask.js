@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Button, StyleSheet } from "react-native";
+import { View, Text, Button, StyleSheet, Pressable, Image } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 
 export default function EachTask({
@@ -26,26 +26,29 @@ export default function EachTask({
     <View>
       <View style={styles.eachTaskBox}>
         {/* <Text>{item.id}</Text> */}
-        <Text>{item.task}</Text>
-        {/* <TextInput
-          defaultValue={item.task}
-          // value={storeText}
-          onChangeText={(text) => setEditText(text)}
-        /> */}
+        <Text style={styles.eachTask}>{item.task}</Text>
 
         <View style={styles.options}>
-          <Button
+          <Pressable
             onPress={() => setOpenEdit(!openEdit)}
-            title="Edit"
-            color="#841584"
             accessibilityLabel="Edit Task"
-          />
-          <Button
+            style={styles.buttonPressable}
+          >
+            <Image
+              style={styles.editLogo}
+              source={require("../assets/images/edit.png")}
+            ></Image>
+          </Pressable>
+          <Pressable
             onPress={() => handleDeleteButton(item.id)}
-            title="Delete"
-            color="#841584"
             accessibilityLabel="Delete Task"
-          />
+            style={styles.buttonPressable}
+          >
+            <Image
+              style={styles.editLogo}
+              source={require("../assets/images/trash-bin.png")}
+            ></Image>
+          </Pressable>
         </View>
       </View>
       {openEdit ? (
@@ -79,6 +82,19 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-evenly",
+  },
+
+  eachTask: {
+    fontSize: 20,
+    width: "60%",
+  },
+  buttonPressable: {
+    padding: 10,
+  },
+
+  editLogo: {
+    width: 20,
+    height: 20,
   },
 
   editTaskBox: {
