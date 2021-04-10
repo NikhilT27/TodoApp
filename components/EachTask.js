@@ -88,6 +88,7 @@ const styles = StyleSheet.create({
     height: 10,
     backgroundColor: "#0095ff",
     borderRadius: 10,
+    marginTop: 10,
   },
   eachTaskBoxMain: {
     marginBottom: 10,
@@ -98,14 +99,15 @@ const styles = StyleSheet.create({
     width: "95%",
     alignSelf: "center",
     flexDirection: "row",
-    alignItems: "center",
+    alignItems: "flex-start",
     justifyContent: "space-evenly",
   },
 
   eachTask: {
     fontSize: 20,
-    width: "60%",
+    width: "70%",
     color: "black",
+    marginBottom: 10,
   },
 
   editTaskTitle: {
@@ -120,8 +122,8 @@ const styles = StyleSheet.create({
   },
 
   editTaskInput: {
-    textAlignVertical: "top",
-    width: "100%",
+    width: 300,
+    height: "auto",
     fontSize: 20,
     padding: 10,
     backgroundColor: "white",

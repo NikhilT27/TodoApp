@@ -1,7 +1,15 @@
-import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Button, Pressable, Image } from "react-native";
-import { FlatList, ScrollView, TextInput } from "react-native-gesture-handler";
+import {
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  Pressable,
+  Image,
+} from "react-native";
+import { FlatList, TextInput } from "react-native-gesture-handler";
 import EachTask from "./components/EachTask";
 
 export default function App() {
@@ -51,44 +59,46 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container}>
-      <View style={styles.appTitleBox}>
-        <Text style={styles.appTitle}>TODO APP</Text>
-        <Text style={styles.appSub}>Add New Task !!</Text>
-      </View>
-      <View style={styles.addTaskBoxRelative}>
-        <View style={styles.addTaskBox}>
-          <View style={styles.taskInputBox}>
-            <Text style={styles.taskInputTitle}>Add Task</Text>
-            <TextInput
-              style={styles.taskInput}
-              placeholder="Enter Task"
-              onChangeText={(text) => setText(text)}
-              value={text}
-            ></TextInput>
+    <ScrollView vertical>
+      <View style={styles.container}>
+        <View style={styles.appTitleBox}>
+          <Text style={styles.appTitle}>TODO APP</Text>
+          <Text style={styles.appSub}>Add New Task !!</Text>
+        </View>
+        <View style={styles.addTaskBoxRelative}>
+          <View style={styles.addTaskBox}>
+            <View style={styles.taskInputBox}>
+              <Text style={styles.taskInputTitle}>Add Task</Text>
+              <TextInput
+                style={styles.taskInput}
+                placeholder="Enter Task"
+                onChangeText={(text) => setText(text)}
+                value={text}
+              ></TextInput>
+            </View>
+            <Pressable style={styles.addButton} onPress={onAddButton}>
+              <Text style={styles.addButtonText}>+</Text>
+            </Pressable>
           </View>
-          <Pressable style={styles.addButton} onPress={onAddButton}>
-            <Text style={styles.addButtonText}>+</Text>
-          </Pressable>
+        </View>
+        <View style={styles.storedTaskbox}>
+          <Text style={styles.tasksTitle}>TASKS :</Text>
+          <FlatList
+            data={tasks}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id}
+          ></FlatList>
         </View>
       </View>
-      <View style={styles.storedTaskbox}>
-        <Text style={styles.tasksTitle}>TASKS</Text>
-        <FlatList
-          data={tasks}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.id}
-        ></FlatList>
-      </View>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  safeAreaContainer: {},
   container: {
     flex: 1,
     position: "relative",
-    // backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -103,7 +113,7 @@ const styles = StyleSheet.create({
   },
 
   taskInputBox: {
-    width: "100%",
+    width: "80%",
   },
 
   taskInputTitle: {
@@ -125,7 +135,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 20,
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "center",
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.8,
@@ -177,8 +187,7 @@ const styles = StyleSheet.create({
   },
 
   tasksTitle: {
-    marginLeft: "5%",
-    marginTop: "5%",
+    margin: 20,
     fontSize: 20,
     fontWeight: "700",
     alignSelf: "flex-start",
