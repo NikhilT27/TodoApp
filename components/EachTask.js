@@ -8,24 +8,20 @@ export default function EachTask({
   handleDeleteButton,
 }) {
   const [editText, setEditText] = useState("");
-  const [storeText, setStoreText] = useState("");
   const [openEdit, setOpenEdit] = useState(false);
-
-  useEffect(() => {
-    setStoreText(item.task);
-  }, []);
 
   function onEditButtonPress() {
     if (editText != "") {
       handleEditButton(item.id, editText);
       setEditText("");
+      setOpenEdit(false);
     }
   }
 
   return (
-    <View>
+    <View style={styles.eachTaskBoxMain}>
       <View style={styles.eachTaskBox}>
-        {/* <Text>{item.id}</Text> */}
+        <View style={styles.bullet}></View>
         <Text style={styles.eachTask}>{item.task}</Text>
 
         <View style={styles.options}>
@@ -53,20 +49,31 @@ export default function EachTask({
       </View>
       {openEdit ? (
         <View style={styles.editTaskBox}>
-          <Text>Edit Task</Text>
-          <TextInput
-            defaultValue={editText}
-            // value={storeText}
-            placeholder="Edit task"
-            onChangeText={(text) => setEditText(text)}
-            onSubmitEditing={onEditButtonPress}
-          />
-          <Button
-            onPress={onEditButtonPress}
-            title="Ok"
-            color="#841584"
-            accessibilityLabel="Edit Task"
-          />
+          <View style={styles.editTaskInputBox}>
+            {/* <Text style={styles.editTaskTitle}>Edit Task</Text> */}
+            <TextInput
+              style={styles.editTaskInput}
+              multiline={true}
+              defaultValue={editText}
+              placeholder="Edit task"
+              onChangeText={(text) => setEditText(text)}
+              onSubmitEditing={onEditButtonPress}
+            />
+          </View>
+          <View style={styles.editTaskOption}>
+            <Pressable
+              onPress={() => setOpenEdit(false)}
+              accessibilityLabel="Close Edit Task"
+            >
+              <Text style={styles.cancelButton}>Cancel</Text>
+            </Pressable>
+            <Pressable
+              onPress={onEditButtonPress}
+              accessibilityLabel="Submit Edit Task"
+            >
+              <Text style={styles.optionButton}>OK</Text>
+            </Pressable>
+          </View>
         </View>
       ) : (
         <></>
@@ -76,9 +83,20 @@ export default function EachTask({
 }
 
 const styles = StyleSheet.create({
+  bullet: {
+    width: 10,
+    height: 10,
+    backgroundColor: "#0095ff",
+    borderRadius: 10,
+  },
+  eachTaskBoxMain: {
+    marginBottom: 10,
+    borderRadius: 20,
+  },
+
   eachTaskBox: {
-    width: "100%",
-    marginTop: 10,
+    width: "95%",
+    alignSelf: "center",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-evenly",
@@ -87,7 +105,54 @@ const styles = StyleSheet.create({
   eachTask: {
     fontSize: 20,
     width: "60%",
+    color: "black",
   },
+
+  editTaskTitle: {
+    fontSize: 16,
+    fontWeight: "700",
+    color: "black",
+    marginBottom: 10,
+  },
+
+  editTaskInputBox: {
+    width: "100%",
+  },
+
+  editTaskInput: {
+    textAlignVertical: "top",
+    width: "100%",
+    fontSize: 20,
+    padding: 10,
+    backgroundColor: "white",
+    borderRadius: 10,
+  },
+
+  editTaskOption: {
+    flexDirection: "row",
+    marginTop: 10,
+  },
+
+  optionButton: {
+    fontSize: 16,
+    fontWeight: "700",
+    color: "#0095ff",
+    backgroundColor: "white",
+    borderRadius: 10,
+    padding: 10,
+    marginLeft: 10,
+  },
+
+  cancelButton: {
+    fontSize: 16,
+    fontWeight: "700",
+    color: "white",
+    backgroundColor: "#0095ff",
+    borderRadius: 10,
+    padding: 10,
+    marginLeft: 10,
+  },
+
   buttonPressable: {
     padding: 10,
   },
@@ -99,12 +164,20 @@ const styles = StyleSheet.create({
 
   editTaskBox: {
     alignSelf: "flex-end",
-    flex: 1,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "flex-start",
+    width: "90%",
+    flexDirection: "column",
+    alignItems: "flex-end",
+    justifyContent: "center",
+    borderRadius: 20,
+    borderColor: "lightgray",
     padding: 20,
     marginRight: 20,
+    backgroundColor: "#0095ff",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.8,
+    shadowRadius: 1,
+    elevation: 2,
   },
 
   options: {
