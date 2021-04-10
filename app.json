@@ -2,11 +2,17 @@
   "name": "todo",
   "displayName": "todo",
   "expo": {
-    "name": "todo",
+    "name": "Nikhil Todo App",
+    "icon": "./assets/images/todo.png",
     "slug": "todo",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "android": {
+      "package": "com.nikhil.todoapp",
+      "versionCode": 1
+    }
+
   }
 }
