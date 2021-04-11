@@ -74,15 +74,24 @@ export default function App() {
                 placeholder="Enter Task"
                 onChangeText={(text) => setText(text)}
                 value={text}
+                onSubmitEditing={onAddButton}
               ></TextInput>
             </View>
-            <Pressable style={styles.addButton} onPress={onAddButton}>
+            <Pressable
+              style={styles.addButton}
+              onPress={onAddButton}
+              accessibilityLabel="Add Task"
+            >
               <Text style={styles.addButtonText}>+</Text>
             </Pressable>
           </View>
         </View>
         <View style={styles.storedTaskbox}>
-          <Text style={styles.tasksTitle}>TASKS :</Text>
+          {tasks.length !== 0 ? (
+            <Text style={styles.tasksTitle}>TASKS :</Text>
+          ) : (
+            <Text></Text>
+          )}
           <FlatList
             data={tasks}
             renderItem={renderItem}
