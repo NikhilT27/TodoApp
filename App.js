@@ -1,14 +1,5 @@
 import React, { useState } from "react";
-import {
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  Pressable,
-  Image,
-} from "react-native";
+import { ScrollView, StyleSheet, Text, View, Pressable } from "react-native";
 import { FlatList, TextInput } from "react-native-gesture-handler";
 import EachTask from "./components/EachTask";
 
@@ -28,9 +19,6 @@ export default function App() {
   };
 
   function handleEditButton(id, text) {
-    console.log(id);
-    console.log(text);
-
     let newTasks = tasks.map((each) => {
       if (text != "") {
         if (each.id === id) {

@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { View, Text, Button, StyleSheet, Pressable, Image } from "react-native";
-import { TextInput } from "react-native-gesture-handler";
+import React, { useState } from "react";
+import { View, Text, StyleSheet, Pressable, Image } from "react-native";
+
+import EachTaskEdit from "./EachTaskEdit";
 
 export default function EachTask({
   item,
@@ -16,6 +17,14 @@ export default function EachTask({
       setEditText("");
       setOpenEdit(false);
     }
+  }
+
+  function onDeleteButtonPress() {
+    setOpenEdit(false);
+  }
+
+  function onTextChange(text) {
+    setEditText(text);
   }
 
   return (
@@ -48,33 +57,12 @@ export default function EachTask({
         </View>
       </View>
       {openEdit ? (
-        <View style={styles.editTaskBox}>
-          <View style={styles.editTaskInputBox}>
-            {/* <Text style={styles.editTaskTitle}>Edit Task</Text> */}
-            <TextInput
-              style={styles.editTaskInput}
-              multiline={true}
-              defaultValue={editText}
-              placeholder="Edit task"
-              onChangeText={(text) => setEditText(text)}
-              onSubmitEditing={onEditButtonPress}
-            />
-          </View>
-          <View style={styles.editTaskOption}>
-            <Pressable
-              onPress={() => setOpenEdit(false)}
-              accessibilityLabel="Close Edit Task"
-            >
-              <Text style={styles.cancelButton}>Cancel</Text>
-            </Pressable>
-            <Pressable
-              onPress={onEditButtonPress}
-              accessibilityLabel="Submit Edit Task"
-            >
-              <Text style={styles.optionButton}>OK</Text>
-            </Pressable>
-          </View>
-        </View>
+        <EachTaskEdit
+          onEditButtonPress={onEditButtonPress}
+          onDeleteButtonPress={onDeleteButtonPress}
+          editText={editText}
+          onTextChange={onTextChange}
+        />
       ) : (
         <></>
       )}
@@ -83,6 +71,11 @@ export default function EachTask({
 }
 
 const styles = StyleSheet.create({
+  eachTaskBoxMain: {
+    marginBottom: 10,
+    borderRadius: 20,
+  },
+
   bullet: {
     width: 10,
     height: 10,
@@ -90,10 +83,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginTop: 10,
     marginRight: 10,
-  },
-  eachTaskBoxMain: {
-    marginBottom: 10,
-    borderRadius: 20,
   },
 
   eachTaskBox: {
@@ -109,31 +98,6 @@ const styles = StyleSheet.create({
     width: "70%",
     color: "black",
     marginBottom: 10,
-  },
-
-  editTaskTitle: {
-    fontSize: 16,
-    fontWeight: "700",
-    color: "black",
-    marginBottom: 10,
-  },
-
-  editTaskInputBox: {
-    width: "100%",
-  },
-
-  editTaskInput: {
-    width: 300,
-    height: "auto",
-    fontSize: 20,
-    padding: 10,
-    backgroundColor: "white",
-    borderRadius: 10,
-  },
-
-  editTaskOption: {
-    flexDirection: "row",
-    marginTop: 10,
   },
 
   optionButton: {
@@ -163,24 +127,6 @@ const styles = StyleSheet.create({
   editLogo: {
     width: 20,
     height: 20,
-  },
-
-  editTaskBox: {
-    alignSelf: "flex-end",
-    width: "90%",
-    flexDirection: "column",
-    alignItems: "flex-end",
-    justifyContent: "center",
-    borderRadius: 20,
-    borderColor: "lightgray",
-    padding: 20,
-    marginRight: 20,
-    backgroundColor: "#0095ff",
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.8,
-    shadowRadius: 1,
-    elevation: 2,
   },
 
   options: {
