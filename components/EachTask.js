@@ -89,6 +89,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#0095ff",
     borderRadius: 10,
     marginTop: 10,
+    marginRight: 10,
   },
   eachTaskBoxMain: {
     marginBottom: 10,
