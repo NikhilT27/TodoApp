@@ -1,6 +1,6 @@
 
 
-<img align="right" width="300" height="auto" src="https://res.cloudinary.com/gafrfdasdx/image/upload/bo_1px_solid_rgb:000000,c_scale,w_300/v1618124627/portfolio/Completed%20Projects/todoApp_nx1dgz.jpg">
+<img align="right" width="300" height="auto" src="https://res.cloudinary.com/gafrfdasdx/image/upload/bo_1px_solid_rgb:000000,c_scale,w_300/v1618125596/portfolio/Completed%20Projects/TodoApp_kqlown.jpg">
 
 # ReactNative - TodoApp
 A simple TODO android mobile application using React Native.
