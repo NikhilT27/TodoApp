@@ -5,6 +5,7 @@
     "name": "Nikhil Todo App",
     "icon": "./assets/images/todo.png",
     "slug": "todo",
+    "description":"A simple TODO android mobile application using React Native. It allows user to add a new task to a list of TODOs, edit an already added TODO task and delete a TODO task.",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
